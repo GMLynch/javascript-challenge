@@ -33,25 +33,26 @@ form.on("submit", runEnter);
 function runEnter(){
     // stop the broswer from refreshing
     d3.event.preventDefault();
+    tbody.html("");
     // select the input and retrieve the user value 
     var inputElement = d3.select("#datetime");
     var inputValue = inputElement.property("value");
     //log to verify value is working
     console.log(inputValue);
-    console.log(tbody);
+    //console.log(tbody);
     //Capture the filtered data set
-    var filterSightings = tbody.filter(tbody => data.datetime --- inputValue);
+    var filterSightings = data.filter(tdata => tdata.datetime === inputValue);
     //console log the result
     console.log(filterSightings);
+
     // select the th element
-    var resultsTable = d3.select("table table-striped");
+   // var resultsTable = d3.select("table table-striped");
     //Loop on filtered data and populate the table
-    data.forEach((filterSightings) => {
-        var row = resultsTable.append("tr");
+    filterSightings.forEach((filterSightings) => {
+        var row = tbody.append("tr");
         Object.entries(filterSightings).forEach(([key, value]) => {
             var cell = row.append("td");
             cell.text(value);
         });
-        return resultsTable;
     })     
 };
